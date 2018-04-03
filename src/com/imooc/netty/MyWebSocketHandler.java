@@ -104,6 +104,7 @@ public class MyWebSocketHandler extends SimpleChannelInboundHandler<Object>{
 		//获取客户端向服务端发送的消息
 		String request =((TextWebSocketFrame)frame).text();
 		System.out.println("服务端收到客户端的消息===>>>"+request);
+		//这里的request是客户端传递过来的值     这里就可以处理业务逻辑   然后将处理后的结果 返回给客户端
 		TextWebSocketFrame tws=new TextWebSocketFrame(new Date().toString()+ctx.channel().id()+"====>>>"+request);
 		//群发，服务端向每个链接上来的客户端群发消息
 		NettyConfig.group.writeAndFlush(tws);
